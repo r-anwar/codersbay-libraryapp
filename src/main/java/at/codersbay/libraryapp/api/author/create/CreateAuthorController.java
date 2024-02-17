@@ -5,9 +5,6 @@ import at.codersbay.libraryapp.api.author.AuthorRepository;
 import at.codersbay.libraryapp.api.author.AuthorResponse;
 import at.codersbay.libraryapp.api.books.Book;
 import at.codersbay.libraryapp.api.books.BookRepository;
-import at.codersbay.libraryapp.api.books.BookResponse;
-import at.codersbay.libraryapp.api.books.create.CreateBookDTO;
-import at.codersbay.libraryapp.api.books.create.CreateBookService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +19,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/author/")
 public class CreateAuthorController {
-
-    @Autowired
-    private AuthorRepository authorRepository;
 
     @Autowired
     private CreateAuthorService authorService;
