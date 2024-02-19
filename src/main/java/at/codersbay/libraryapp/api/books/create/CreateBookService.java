@@ -28,7 +28,7 @@ public class CreateBookService {
         Book book = new Book();
         book.setTitle(title);
         book.setIsbn(isbn);
-        book.setAuthors(authors);
+        //book.setAuthors(authors);
 
         return this.bookRepository.save(book);
     }
