@@ -13,7 +13,6 @@ import java.util.HashSet;
 @Service
 public class DataInitializer {
 
-
     @Autowired
     private BookRepository bookRepository;
 
@@ -32,8 +31,6 @@ public class DataInitializer {
         rowling.setLastName("Rowling");
 
         authorRepository.save(rowling);
-
-
 
         Book potter1 = new Book();
         potter1.setTitle("Harry Potter Teil 1");
@@ -62,8 +59,5 @@ public class DataInitializer {
         bookRepository.save(potter2);
 
         bookRepository.save(potter3);
-
-
-
     }
 }

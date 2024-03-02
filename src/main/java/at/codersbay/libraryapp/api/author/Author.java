@@ -1,6 +1,7 @@
 package at.codersbay.libraryapp.api.author;
 
 import at.codersbay.libraryapp.api.books.Book;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -30,6 +31,7 @@ public class Author {
     private String lastName;
 
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books;
 

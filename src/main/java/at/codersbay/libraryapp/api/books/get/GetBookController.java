@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,6 +21,14 @@ public class GetBookController {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @GetMapping("/")
+    public ResponseEntity<List<Book>> getAll() {
+        List<Book> books = bookRepository.findAll();
+
+        return ResponseEntity.ok(books);
+    }
+
 
     @GetMapping("/isbn/{isbn}")
     public ResponseEntity<BookResponse> getByISBN(
