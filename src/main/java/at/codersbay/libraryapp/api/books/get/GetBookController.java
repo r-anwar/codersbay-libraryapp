@@ -25,8 +25,21 @@ public class GetBookController {
     @GetMapping("/")
     public ResponseEntity<List<Book>> getAll() {
         List<Book> books = bookRepository.findAll();
-
         return ResponseEntity.ok(books);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Book> getById(
+            @PathVariable long id) {
+        Optional<Book> optionalBook = this.bookRepository.findById(id);
+
+        if(!optionalBook.isPresent()) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+
+        Book book = optionalBook.get();
+
+        return ResponseEntity.ok(book);
     }
 
 
@@ -42,7 +55,7 @@ public class GetBookController {
             return new ResponseEntity(bookResponse, HttpStatus.BAD_REQUEST);
         }
 
-        Optional<Book> optionalBook = bookRepository.findBookByIsbn(isbn);
+        Optional<Book> optionalBook = bookRepository.findByIsbn(isbn);
 
         if (optionalBook.isPresent()) {
             return new ResponseEntity(optionalBook.get(), HttpStatus.OK);

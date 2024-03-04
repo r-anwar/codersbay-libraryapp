@@ -29,5 +29,4 @@ public class GetAuthorController {
             @PathVariable String lastName) {
         return new ResponseEntity<>(authorRepository.findByLastName(lastName), HttpStatus.OK);
     }
-
 }

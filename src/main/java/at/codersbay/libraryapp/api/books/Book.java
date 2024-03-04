@@ -6,6 +6,8 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 @Entity
@@ -28,9 +30,8 @@ public class Book {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, unique = false)
+    @Column(nullable = false, unique = true)
     private String isbn;
-
 
     @ManyToMany()
     @JoinTable(

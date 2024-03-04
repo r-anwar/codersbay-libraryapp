@@ -1,7 +1,6 @@
 package at.codersbay.libraryapp.api.author.create;
 
 import at.codersbay.libraryapp.api.author.Author;
-import at.codersbay.libraryapp.api.author.AuthorRepository;
 import at.codersbay.libraryapp.api.author.AuthorResponse;
 import at.codersbay.libraryapp.api.books.Book;
 import at.codersbay.libraryapp.api.books.BookRepository;

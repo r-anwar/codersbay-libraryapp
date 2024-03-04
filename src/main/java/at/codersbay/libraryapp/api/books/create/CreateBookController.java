@@ -3,7 +3,6 @@ package at.codersbay.libraryapp.api.books.create;
 import at.codersbay.libraryapp.api.author.Author;
 import at.codersbay.libraryapp.api.author.AuthorRepository;
 import at.codersbay.libraryapp.api.books.Book;
-import at.codersbay.libraryapp.api.books.BookRepository;
 import at.codersbay.libraryapp.api.books.BookResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,8 @@ public class CreateBookController {
 
     @PostMapping
     public ResponseEntity<BookResponse> create(CreateBookDTO createBookDTO) {
+
+        System.out.println(createBookDTO.getTitle());
 
         if (createBookDTO == null || StringUtils.isEmpty(createBookDTO.getTitle())
                 || StringUtils.isEmpty(createBookDTO.getIsbn()) || createBookDTO.getAuthorIds() == null

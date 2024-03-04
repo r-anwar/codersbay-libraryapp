@@ -8,8 +8,9 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "TB_AUTHORS")
+@Table(name="TB_AUTHORS")
 public class Author {
+
 
     @Id
     @GeneratedValue(generator = "author-sequence-generator")
@@ -29,7 +30,6 @@ public class Author {
 
     @Column(nullable = false)
     private String lastName;
-
 
     @JsonIgnore
     @ManyToMany(mappedBy = "authors")

@@ -3,7 +3,6 @@ package at.codersbay.libraryapp.api.author.create;
 import at.codersbay.libraryapp.api.author.Author;
 import at.codersbay.libraryapp.api.author.AuthorRepository;
 import at.codersbay.libraryapp.api.books.Book;
-import at.codersbay.libraryapp.api.books.BookRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

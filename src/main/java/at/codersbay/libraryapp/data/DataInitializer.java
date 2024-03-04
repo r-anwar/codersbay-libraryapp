@@ -59,5 +59,30 @@ public class DataInitializer {
         bookRepository.save(potter2);
 
         bookRepository.save(potter3);
+
+
+
+
+
+
+
+
+
+
+        Author hesse = new Author();
+        hesse.setFirstName("Hermann");
+        hesse.setLastName("Hesse");
+        authorRepository.save(hesse);
+
+        Book narzissUndGoldmund = new Book();
+        narzissUndGoldmund.setTitle("Narziß und Goldmund");
+        narzissUndGoldmund.setIsbn("ISBNYXCVBNM");
+        narzissUndGoldmund.setAuthors(new HashSet<>());
+        narzissUndGoldmund.getAuthors().add(hesse);
+
+        bookRepository.save(narzissUndGoldmund);
+
+
+
     }
 }
