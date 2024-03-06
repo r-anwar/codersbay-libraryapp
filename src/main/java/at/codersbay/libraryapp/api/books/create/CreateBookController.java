@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,9 @@ public class CreateBookController {
     private CreateBookService createBookService;
 
     @PostMapping
-    public ResponseEntity<BookResponse> create(CreateBookDTO createBookDTO) {
+    public ResponseEntity<BookResponse> create(
+            @RequestBody
+            CreateBookDTO createBookDTO) {
 
         System.out.println(createBookDTO.getTitle());
 
@@ -37,6 +40,8 @@ public class CreateBookController {
         }
 
         List<Author> authors = this.authorRepository.findAllById(createBookDTO.getAuthorIds());
+
+        System.out.println(authors.size());
 
         Book book = this.createBookService.create(createBookDTO.getTitle(), createBookDTO.getIsbn(),
                 new HashSet<>(authors));
