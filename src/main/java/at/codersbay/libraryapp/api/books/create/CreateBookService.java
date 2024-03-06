@@ -18,8 +18,6 @@ public class CreateBookService {
 
     public Book create(String title, String isbn, Set<Author> authors) {
 
-        System.out.println(title);
-
         if (StringUtils.isEmpty(title)) {
             // throw new TitleIsEmptyException
         } else if (StringUtils.isEmpty(isbn)) {

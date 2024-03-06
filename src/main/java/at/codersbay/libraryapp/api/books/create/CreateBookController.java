@@ -31,8 +31,6 @@ public class CreateBookController {
             @RequestBody
             CreateBookDTO createBookDTO) {
 
-        System.out.println(createBookDTO.getTitle());
-
         if (createBookDTO == null || StringUtils.isEmpty(createBookDTO.getTitle())
                 || StringUtils.isEmpty(createBookDTO.getIsbn()) || createBookDTO.getAuthorIds() == null
                 || createBookDTO.getAuthorIds().isEmpty()) {
