@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "86f070af-13fa-496a-94d3-bddf1ea3a49c",
+		"name": "LibraryApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29661257",
+		"_collection_link": "https://red-astronaut-929233.postman.co/workspace/New-Team-Workspace~22da3118-6f54-4e64-ba58-79cde59e1676/collection/29661257-86f070af-13fa-496a-94d3-bddf1ea3a49c?action=share&source=collection_link&creator=29661257"
+	},
+	"item": [
+		{
+			"name": "book",
+			"item": [
+				{
+					"name": "api/book/{{id}}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/book/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"book",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/book/isbn/{{isbn}}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/book/isbn/mnbvcxy1234567890",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"isbn",
+								"mnbvcxy1234567890"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/book/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/book/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"book",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Moby Dick\",\r\n    \"isbn\": \"ISBN123456781\",\r\n    \"authorIds\": [\"1\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/book/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"book",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "author",
+			"item": [
+				{
+					"name": "api/author",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/author/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"author",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/author/lastname/{{lastName}}",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
