@@ -1,5 +1,7 @@
 package at.codersbay.libraryapp.api.books.create;
 
+import at.codersbay.libraryapp.api.books.Book;
+
 import java.util.Set;
 
 public class CreateBookDTO {

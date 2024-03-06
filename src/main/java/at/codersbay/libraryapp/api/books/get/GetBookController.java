@@ -30,7 +30,8 @@ public class GetBookController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Book> getById(
-            @PathVariable long id) {
+            @PathVariable
+            long id) {
         Optional<Book> optionalBook = this.bookRepository.findById(id);
 
         if(!optionalBook.isPresent()) {

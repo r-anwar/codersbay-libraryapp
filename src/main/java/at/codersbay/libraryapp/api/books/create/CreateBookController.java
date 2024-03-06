@@ -13,16 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/book/")
 public class CreateBookController {
-
-    @Autowired
-    private AuthorRepository authorRepository;
-
     @Autowired
     private CreateBookService createBookService;
 
@@ -31,18 +29,24 @@ public class CreateBookController {
             @RequestBody
             CreateBookDTO createBookDTO) {
 
-        if (createBookDTO == null || StringUtils.isEmpty(createBookDTO.getTitle())
-                || StringUtils.isEmpty(createBookDTO.getIsbn()) || createBookDTO.getAuthorIds() == null
-                || createBookDTO.getAuthorIds().isEmpty()) {
-            return new ResponseEntity<>(BookResponse.getInstance(null), HttpStatus.BAD_REQUEST);
+        if (createBookDTO == null) {
+            BookResponse response = BookResponse.getInstance(null);
+            response.addErrorMessage("post body is empty.");
+
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
-        List<Author> authors = this.authorRepository.findAllById(createBookDTO.getAuthorIds());
+        Book book = null;
 
-        System.out.println(authors.size());
+        try {
+            book = this.createBookService.createByAuthorIds(createBookDTO.getTitle(), createBookDTO.getIsbn(),
+                    createBookDTO.getAuthorIds());
+        } catch (TitleIsEmptyException | ISBNIsEmptyException | EmptyAuthorException exception) {
+            BookResponse response = BookResponse.getInstance(null);
+            response.addErrorMessage(exception.getMessage());
 
-        Book book = this.createBookService.create(createBookDTO.getTitle(), createBookDTO.getIsbn(),
-                new HashSet<>(authors));
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
 
         return new ResponseEntity<>(BookResponse.getInstance(book), HttpStatus.OK);
     }

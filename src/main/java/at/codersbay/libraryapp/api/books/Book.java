@@ -40,6 +40,9 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors;
 
+    @Column(nullable = false)
+    private boolean available = true;
+
     public long getId() {
         return id;
     }
@@ -70,5 +73,13 @@ public class Book {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }
