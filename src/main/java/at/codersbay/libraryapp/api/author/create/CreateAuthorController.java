@@ -29,7 +29,7 @@ public class CreateAuthorController {
     public ResponseEntity<AuthorResponse> create(CreateAuthorDTO createAuthorDTO) {
 
         if (createAuthorDTO == null || StringUtils.isEmpty(createAuthorDTO.getLastName())) {
-            return new ResponseEntity<>(AuthorResponse.getInstance(null), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new AuthorResponse(), HttpStatus.BAD_REQUEST);
         }
 
         List<Book> books = this.bookRepository.findAllById(createAuthorDTO.getBookIds());
@@ -37,7 +37,7 @@ public class CreateAuthorController {
         Author author = this.authorService.create(createAuthorDTO.getFirstName(), createAuthorDTO.getLastName(),
                 new HashSet<>(books));
 
-        return new ResponseEntity<>(AuthorResponse.getInstance(author), HttpStatus.OK);
+        return new ResponseEntity<>(new AuthorResponse(author), HttpStatus.OK);
     }
 
 }

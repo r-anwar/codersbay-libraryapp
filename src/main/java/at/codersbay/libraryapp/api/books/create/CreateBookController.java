@@ -30,7 +30,7 @@ public class CreateBookController {
             CreateBookDTO createBookDTO) {
 
         if (createBookDTO == null) {
-            BookResponse response = BookResponse.getInstance(null);
+            BookResponse response = new BookResponse();
             response.addErrorMessage("post body is empty.");
 
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
@@ -42,12 +42,12 @@ public class CreateBookController {
             book = this.createBookService.createByAuthorIds(createBookDTO.getTitle(), createBookDTO.getIsbn(),
                     createBookDTO.getAuthorIds());
         } catch (TitleIsEmptyException | ISBNIsEmptyException | EmptyAuthorException exception) {
-            BookResponse response = BookResponse.getInstance(null);
+            BookResponse response = new BookResponse();
             response.addErrorMessage(exception.getMessage());
 
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(BookResponse.getInstance(book), HttpStatus.OK);
+        return new ResponseEntity<>(new BookResponse(book), HttpStatus.OK);
     }
 }

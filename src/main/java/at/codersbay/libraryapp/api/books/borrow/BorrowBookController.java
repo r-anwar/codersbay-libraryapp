@@ -43,6 +43,6 @@ public class BorrowBookController {
             this.bookRepository.save(book);
         }
 
-        return new ResponseEntity<>(BookResponse.getInstance(book), HttpStatus.OK);
+        return new ResponseEntity<>(new BookResponse(book), HttpStatus.OK);
     }
 }

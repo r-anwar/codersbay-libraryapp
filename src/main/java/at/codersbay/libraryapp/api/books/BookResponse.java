@@ -8,18 +8,12 @@ public class BookResponse extends Response {
 
     private Book book;
 
-    private BookResponse() {
+    public BookResponse() {
 
     }
-    public static BookResponse getInstance(Book book) {
-        BookResponse response = getInstance();
-        response.book = book;
 
-        return response;
-    }
-
-    public static BookResponse getInstance() {
-        return new BookResponse();
+    public BookResponse(Book book) {
+        this.book = book;
     }
 
     public Book getBook() {

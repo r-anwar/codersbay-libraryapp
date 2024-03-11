@@ -34,7 +34,7 @@ public class UpdateBookController {
         Optional<Book> optionalBook = this.bookRepository.findById(updateBookDTO.getId());
 
         if (optionalBook.isEmpty()) {
-            BookResponse response = BookResponse.getInstance(null);
+            BookResponse response = new BookResponse();
             response.addErrorMessage("could not find book by id '" + updateBookDTO.getId());
 
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -59,7 +59,8 @@ public class UpdateBookController {
 
         this.bookRepository.save(book);
 
-        BookResponse response = BookResponse.getInstance(book);
+        BookResponse response = new BookResponse();
+        response.setBook(book);
 
         return ResponseEntity.ok(response);
     }

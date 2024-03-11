@@ -49,7 +49,7 @@ public class GetBookController {
             @PathVariable
             String isbn) {
 
-        BookResponse bookResponse = BookResponse.getInstance();
+        BookResponse bookResponse = new BookResponse();
 
         if (StringUtils.isEmpty(isbn)) {
             bookResponse.addErrorMessage(BookResponse.ISBN_NOT_PROVIDED);
