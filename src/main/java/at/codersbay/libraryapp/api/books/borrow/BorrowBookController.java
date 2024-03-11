@@ -6,10 +6,7 @@ import at.codersbay.libraryapp.api.books.BookResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -21,21 +18,28 @@ public class BorrowBookController {
     BookRepository bookRepository;
 
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/")
     public ResponseEntity<BookResponse> borrow(
-            @PathVariable
-            long id) {
+            @RequestBody
+            BorrowDTO patchBorrowDTO) {
 
-        Optional<Book> optionalBook = bookRepository.findById(id);
+        if(patchBorrowDTO == null) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
 
-        if(optionalBook.isEmpty()) {
+        Optional<Book> optionalBook = bookRepository.findById(patchBorrowDTO.getId());
+
+        if (optionalBook.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         Book book = optionalBook.get();
 
-        if(book.isAvailable()) {
+        if(patchBorrowDTO.isBorrow() && book.isAvailable()) {
             book.setAvailable(false);
+            this.bookRepository.save(book);
+        } else if(!patchBorrowDTO.isBorrow() && !book.isAvailable()) {
+            book.setAvailable(true);
             this.bookRepository.save(book);
         }
 
