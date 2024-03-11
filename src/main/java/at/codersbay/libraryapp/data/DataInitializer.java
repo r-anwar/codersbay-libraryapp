@@ -69,15 +69,6 @@ public class DataInitializer {
 
         bookRepository.save(potter3);
 
-
-
-
-
-
-
-
-
-
         Author hesse = new Author();
         hesse.setFirstName("Hermann");
         hesse.setLastName("Hesse");
@@ -90,8 +81,6 @@ public class DataInitializer {
         narzissUndGoldmund.getAuthors().add(hesse);
 
         bookRepository.save(narzissUndGoldmund);
-
-
 
     }
 }
