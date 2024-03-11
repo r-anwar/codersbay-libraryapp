@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 @Service
 public class CreateBookService {
@@ -27,9 +24,15 @@ public class CreateBookService {
     public Book createByAuthorIds(String title, String isbn, Set<Long> authorIds)
             throws TitleIsEmptyException, ISBNIsEmptyException, EmptyAuthorException {
 
-        List<Author> authors = this.authorRepository.findAllById(authorIds);
+        Set<Author> authors = null;
 
-        return create(title, isbn, new HashSet<>(authors));
+        if(authorIds == null ||authorIds.size() == 0) {
+            //authors = new HashSet<>();
+        } else {
+            authors = new HashSet<>(this.authorRepository.findAllById(authorIds));
+        }
+
+        return create(title, isbn, authors);
     }
 
     public Book create(String title, String isbn, Set<Author> authors)
@@ -39,8 +42,6 @@ public class CreateBookService {
             throw new TitleIsEmptyException("title is empty or null.");
         } else if (StringUtils.isEmpty(isbn)) {
             throw new ISBNIsEmptyException("ISBN is empty or null.");
-        } else if (authors == null || authors.isEmpty()) {
-            throw new EmptyAuthorException("given author list is null or empty.");
         }
 
         Book book = new Book();

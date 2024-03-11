@@ -2,7 +2,7 @@ package at.codersbay.libraryapp.api.books.get;
 
 import at.codersbay.libraryapp.api.books.Book;
 import at.codersbay.libraryapp.api.books.BookRepository;
-import at.codersbay.libraryapp.api.books.BookResponse;
+import at.codersbay.libraryapp.api.books.BookResponseBody;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,15 +45,15 @@ public class GetBookController {
 
 
     @GetMapping("/isbn/{isbn}")
-    public ResponseEntity<BookResponse> getByISBN(
+    public ResponseEntity<BookResponseBody> getByISBN(
             @PathVariable
             String isbn) {
 
-        BookResponse bookResponse = new BookResponse();
+        BookResponseBody bookResponseBody = new BookResponseBody();
 
         if (StringUtils.isEmpty(isbn)) {
-            bookResponse.addErrorMessage(BookResponse.ISBN_NOT_PROVIDED);
-            return new ResponseEntity(bookResponse, HttpStatus.BAD_REQUEST);
+            bookResponseBody.addErrorMessage(BookResponseBody.ISBN_NOT_PROVIDED);
+            return new ResponseEntity(bookResponseBody, HttpStatus.BAD_REQUEST);
         }
 
         Optional<Book> optionalBook = bookRepository.findByIsbn(isbn);

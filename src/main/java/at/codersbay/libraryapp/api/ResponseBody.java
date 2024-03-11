@@ -2,7 +2,7 @@ package at.codersbay.libraryapp.api;
 
 import java.util.ArrayList;
 
-public class Response {
+public class ResponseBody {
 
     private static final int ARRAY_INITIAL_CAPACITY = 3;
 

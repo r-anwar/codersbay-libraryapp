@@ -1,9 +1,8 @@
 package at.codersbay.libraryapp.api.books.delete;
 
-import at.codersbay.libraryapp.api.Response;
+import at.codersbay.libraryapp.api.ResponseBody;
 import at.codersbay.libraryapp.api.books.Book;
 import at.codersbay.libraryapp.api.books.BookRepository;
-import at.codersbay.libraryapp.api.books.create.CreateBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,7 @@ public class DeleteBookController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Response> delete(
+    public ResponseEntity<ResponseBody> delete(
             @PathVariable
             long id) {
 
@@ -28,14 +27,14 @@ public class DeleteBookController {
 
         Optional<Book> optionalBook = bookRepository.findById(id);
 
-        Response response = new Response();
+        ResponseBody responseBody = new ResponseBody();
 
         if(optionalBook.isPresent()) {
-            response.addErrorMessage("could not delete book by id '" + id + "'.");
-            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+            responseBody.addErrorMessage("could not delete book by id '" + id + "'.");
+            return new ResponseEntity(responseBody, HttpStatus.BAD_REQUEST);
         } else {
-            response.addMessage("Ok");
-            return new ResponseEntity(response, HttpStatus.ACCEPTED);
+            responseBody.addMessage("Ok");
+            return new ResponseEntity(responseBody, HttpStatus.ACCEPTED);
         }
     }
 }

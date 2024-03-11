@@ -2,8 +2,7 @@ package at.codersbay.libraryapp.api.author.update;
 
 import at.codersbay.libraryapp.api.author.Author;
 import at.codersbay.libraryapp.api.author.AuthorRepository;
-import at.codersbay.libraryapp.api.author.AuthorResponse;
-import at.codersbay.libraryapp.api.books.update.UpdateBookDTO;
+import at.codersbay.libraryapp.api.author.AuthorResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,7 @@ public class UpdateAuthorController {
 
 
     @PutMapping
-    public ResponseEntity<AuthorResponse> update(
+    public ResponseEntity<AuthorResponseBody> update(
             @RequestBody
             UpdateAuthorDTO updateAuthorDTO) {
 
@@ -35,7 +34,7 @@ public class UpdateAuthorController {
 
 
         if(optionalAuthor.isEmpty()) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
 
         Author author = optionalAuthor.get();
@@ -45,6 +44,8 @@ public class UpdateAuthorController {
 
         this.authorRepository.save(author);
 
-        return ResponseEntity.ok(new AuthorResponse(author));
+        AuthorResponseBody authorResponseBody = new AuthorResponseBody(author);
+        authorResponseBody.addMessage("Autor erfolgreich geändert.");
+        return ResponseEntity.ok(authorResponseBody);
     }
 }

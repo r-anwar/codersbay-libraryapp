@@ -1,18 +1,18 @@
 package at.codersbay.libraryapp.api.books;
 
-import at.codersbay.libraryapp.api.Response;
+import at.codersbay.libraryapp.api.ResponseBody;
 
-public class BookResponse extends Response {
+public class BookResponseBody extends ResponseBody {
 
     public static final String ISBN_NOT_PROVIDED = "ISBN IS NOT PROVIDED.";
 
     private Book book;
 
-    public BookResponse() {
+    public BookResponseBody() {
 
     }
 
-    public BookResponse(Book book) {
+    public BookResponseBody(Book book) {
         this.book = book;
     }
 

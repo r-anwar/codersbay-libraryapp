@@ -2,7 +2,7 @@ package at.codersbay.libraryapp.api.books.borrow;
 
 import at.codersbay.libraryapp.api.books.Book;
 import at.codersbay.libraryapp.api.books.BookRepository;
-import at.codersbay.libraryapp.api.books.BookResponse;
+import at.codersbay.libraryapp.api.books.BookResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class BorrowBookController {
 
 
     @PatchMapping("/")
-    public ResponseEntity<BookResponse> borrow(
+    public ResponseEntity<BookResponseBody> borrow(
             @RequestBody
             BorrowDTO patchBorrowDTO) {
 
@@ -43,6 +43,6 @@ public class BorrowBookController {
             this.bookRepository.save(book);
         }
 
-        return new ResponseEntity<>(new BookResponse(book), HttpStatus.OK);
+        return new ResponseEntity<>(new BookResponseBody(book), HttpStatus.OK);
     }
 }

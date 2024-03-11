@@ -2,7 +2,7 @@ package at.codersbay.libraryapp.api.books.update;
 
 import at.codersbay.libraryapp.api.books.Book;
 import at.codersbay.libraryapp.api.books.BookRepository;
-import at.codersbay.libraryapp.api.books.BookResponse;
+import at.codersbay.libraryapp.api.books.BookResponseBody;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class UpdateBookController {
 
 
     @PutMapping
-    public ResponseEntity<BookResponse> update(
+    public ResponseEntity<BookResponseBody> update(
             @RequestBody
             UpdateBookDTO updateBookDTO) {
 
@@ -34,7 +34,7 @@ public class UpdateBookController {
         Optional<Book> optionalBook = this.bookRepository.findById(updateBookDTO.getId());
 
         if (optionalBook.isEmpty()) {
-            BookResponse response = new BookResponse();
+            BookResponseBody response = new BookResponseBody();
             response.addErrorMessage("could not find book by id '" + updateBookDTO.getId());
 
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -59,7 +59,7 @@ public class UpdateBookController {
 
         this.bookRepository.save(book);
 
-        BookResponse response = new BookResponse();
+        BookResponseBody response = new BookResponseBody();
         response.setBook(book);
 
         return ResponseEntity.ok(response);

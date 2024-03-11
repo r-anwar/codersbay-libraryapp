@@ -1,10 +1,9 @@
 package at.codersbay.libraryapp.api.author.delete;
 
-import at.codersbay.libraryapp.api.Response;
-import at.codersbay.libraryapp.api.author.Author;
+import at.codersbay.libraryapp.api.ResponseBody;
 
 
-public class DeleteAuthorResponse extends Response {
+public class DeleteAuthorResponse extends ResponseBody {
 
     private boolean succeeded = false;
 

@@ -1,7 +1,7 @@
 package at.codersbay.libraryapp.api.author.create;
 
 import at.codersbay.libraryapp.api.author.Author;
-import at.codersbay.libraryapp.api.author.AuthorResponse;
+import at.codersbay.libraryapp.api.author.AuthorResponseBody;
 import at.codersbay.libraryapp.api.books.Book;
 import at.codersbay.libraryapp.api.books.BookRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -26,10 +26,10 @@ public class CreateAuthorController {
     private BookRepository bookRepository;
 
     @PostMapping
-    public ResponseEntity<AuthorResponse> create(CreateAuthorDTO createAuthorDTO) {
+    public ResponseEntity<AuthorResponseBody> create(CreateAuthorDTO createAuthorDTO) {
 
         if (createAuthorDTO == null || StringUtils.isEmpty(createAuthorDTO.getLastName())) {
-            return new ResponseEntity<>(new AuthorResponse(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new AuthorResponseBody(), HttpStatus.BAD_REQUEST);
         }
 
         List<Book> books = this.bookRepository.findAllById(createAuthorDTO.getBookIds());
@@ -37,7 +37,7 @@ public class CreateAuthorController {
         Author author = this.authorService.create(createAuthorDTO.getFirstName(), createAuthorDTO.getLastName(),
                 new HashSet<>(books));
 
-        return new ResponseEntity<>(new AuthorResponse(author), HttpStatus.OK);
+        return new ResponseEntity<>(new AuthorResponseBody(author), HttpStatus.OK);
     }
 
 }

@@ -1,12 +1,5 @@
 package at.codersbay.libraryapp.api.author.update;
 
-import at.codersbay.libraryapp.api.books.Book;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.Column;
-import javax.persistence.ManyToMany;
-import java.util.Set;
-
 public class UpdateAuthorDTO {
 
     private long id;
@@ -14,6 +7,7 @@ public class UpdateAuthorDTO {
     private String firstName;
 
     private String lastName;
+
 
     public String getFirstName() {
         return firstName;
