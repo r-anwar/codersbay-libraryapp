@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,9 @@ public class CreateAuthorController {
     private BookRepository bookRepository;
 
     @PostMapping
-    public ResponseEntity<AuthorResponseBody> create(CreateAuthorDTO createAuthorDTO) {
+    public ResponseEntity<AuthorResponseBody> create(
+            @RequestBody
+            CreateAuthorDTO createAuthorDTO) {
 
         if (createAuthorDTO == null || StringUtils.isEmpty(createAuthorDTO.getLastName())) {
             return new ResponseEntity<>(new AuthorResponseBody(), HttpStatus.BAD_REQUEST);
