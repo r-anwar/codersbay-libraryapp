@@ -17,7 +17,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/user/")
 public class DeleteUserController {
-
     @Autowired
     UserRepository userRepository;
 
@@ -35,6 +34,36 @@ public class DeleteUserController {
 
         if(optionalUser.isPresent()) {
             responseBody.addErrorMessage("could not delete user by id '" + id + "'.");
+            return new ResponseEntity(responseBody, HttpStatus.BAD_REQUEST);
+        } else {
+            responseBody.addMessage("Ok");
+            return new ResponseEntity(responseBody, HttpStatus.ACCEPTED);
+        }
+    }
+
+    @DeleteMapping("/byUsername/{username}")
+    public ResponseEntity<ResponseBody> deleteByUsername(
+            @PathVariable
+            String username) {
+
+        Optional<User> optionalUser = this.userRepository.findByUsername(username);
+
+        ResponseBody responseBody = new ResponseBody();
+
+        if(optionalUser.isEmpty()) {
+            responseBody.addErrorMessage("could not find user by username '" + username + "'.");
+            return new ResponseEntity(responseBody, HttpStatus.BAD_REQUEST);
+        }
+
+        User user = optionalUser.get();
+
+        this.userRepository.deleteById(user.getId());
+
+
+        optionalUser = userRepository.findByUsername(username);
+
+        if(optionalUser.isPresent()) {
+            responseBody.addErrorMessage("could not delete user by username '" + username + "'.");
             return new ResponseEntity(responseBody, HttpStatus.BAD_REQUEST);
         } else {
             responseBody.addMessage("Ok");

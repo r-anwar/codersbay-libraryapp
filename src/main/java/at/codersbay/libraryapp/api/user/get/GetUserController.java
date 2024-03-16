@@ -4,6 +4,7 @@ import at.codersbay.libraryapp.api.books.Book;
 import at.codersbay.libraryapp.api.books.BookResponseBody;
 import at.codersbay.libraryapp.api.user.User;
 import at.codersbay.libraryapp.api.user.UserRepository;
+import at.codersbay.libraryapp.api.user.UserResponseBody;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,9 +31,10 @@ public class GetUserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getById(
+    public ResponseEntity<UserResponseBody> getById(
             @PathVariable
             long id) {
+
         Optional<User> optionalUser = this.userRepository.findById(id);
 
         if(!optionalUser.isPresent()) {
@@ -41,6 +43,22 @@ public class GetUserController {
 
         User user = optionalUser.get();
 
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(new UserResponseBody(user));
+    }
+
+    @GetMapping("/byUsername/{username}")
+    public ResponseEntity<UserResponseBody> getByUsername(
+            @PathVariable
+            String username) {
+
+        Optional<User> optionalUser = this.userRepository.findByUsername(username);
+
+        if(!optionalUser.isPresent()) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+
+        User user = optionalUser.get();
+
+        return ResponseEntity.ok(new UserResponseBody(user));
     }
 }

@@ -8,14 +8,16 @@ import at.codersbay.libraryapp.api.user.User;
 import at.codersbay.libraryapp.api.user.UserRepository;
 import at.codersbay.libraryapp.api.user.UserResponseBody;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.PropertyValueException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.annotation.MultipartConfig;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user/")
@@ -29,26 +31,34 @@ public class CreateUserController {
             @RequestBody
             CreateUserDTO createUserDTO) {
 
+        UserResponseBody body = new UserResponseBody();
+
+
         if (createUserDTO == null || StringUtils.isEmpty(createUserDTO.getUsername())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        User user = new User();
-        user.setUsername(createUserDTO.getUsername());
-        user.setFirstName(createUserDTO.getFirstName());
-        user.setLastName(createUserDTO.getLastName());
+        Optional<User> optionalUser = this.userRepository.findByUsername(createUserDTO.getUsername());
+
+        if(optionalUser.isPresent()) {
+            body.addErrorMessage("User ist bereits in Verwendung");
+            return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+        }
+
+        User user = new User(createUserDTO.getUsername(), createUserDTO.getFirstName(),
+                createUserDTO.getLastName());
+
 
         try {
             this.userRepository.save(user);
-        } catch(DataIntegrityViolationException dive) {
-            // duplicate username
-            ResponseBody body = new ResponseBody();
-            body.addErrorMessage("Username bereits in Verwendung");
-            return new ResponseEntity(body, HttpStatus.CONFLICT);
         } catch(Throwable t) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            body.addErrorMessage("Es ist ein Fehler aufgetreten");
+            body.addErrorMessage(t.getMessage());
+
+            return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return ResponseEntity.ok(new UserResponseBody(user));
+        body.setUser(user);
+        return ResponseEntity.ok(body);
     }
 }

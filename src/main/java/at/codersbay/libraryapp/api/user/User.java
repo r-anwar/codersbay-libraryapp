@@ -1,8 +1,11 @@
 package at.codersbay.libraryapp.api.user;
 
+import at.codersbay.libraryapp.api.books.Book;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name= "TB_USERS")
@@ -28,8 +31,18 @@ public class User {
 
     private String lastName;
 
+    @JsonIgnore
+    @OneToMany(mappedBy="user")
+    private Set<Book> books;
+
     public User() {
 
+    }
+
+    public User(String username, String firstName, String lastName) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public long getId() {
@@ -62,5 +75,13 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 }

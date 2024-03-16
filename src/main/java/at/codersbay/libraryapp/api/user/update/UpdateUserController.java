@@ -31,7 +31,7 @@ public class UpdateUserController {
             @RequestBody
             UpdateUserDTO updateUserDTO) {
 
-        if (updateUserDTO == null) {
+        if (updateUserDTO == null || updateUserDTO.getId() < 1) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
@@ -46,10 +46,10 @@ public class UpdateUserController {
 
         User user = optionalUser.get();
 
-
         if(!StringUtils.isEmpty(updateUserDTO.getFirstName())) {
             user.setFirstName(updateUserDTO.getFirstName());
         }
+
 
         if(!StringUtils.isEmpty(updateUserDTO.getLastName())) {
             user.setLastName(updateUserDTO.getLastName());
