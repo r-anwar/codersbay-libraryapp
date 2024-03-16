@@ -42,5 +42,4 @@ public class CreateAuthorController {
 
         return new ResponseEntity<>(new AuthorResponseBody(author), HttpStatus.OK);
     }
-
 }

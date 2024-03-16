@@ -1,6 +1,7 @@
 package at.codersbay.libraryapp.api.books;
 
 import at.codersbay.libraryapp.api.author.Author;
+import at.codersbay.libraryapp.api.user.User;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -44,6 +45,10 @@ public class Book {
     @Column(nullable = false)
     private boolean available = true;
 
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
     public long getId() {
         return id;
     }
@@ -82,5 +87,43 @@ public class Book {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public int hashCode() {
+        if(this.isbn == null) {
+            return 0;
+        }
+
+        return this.isbn.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) {
+            return true;
+        } else if(obj == null) {
+            return false;
+        }
+
+        if(!(obj instanceof Book)) {
+            return false;
+        }
+
+        Book otherBook = (Book) obj;
+
+        if(this.isbn != null && this.isbn.equals(otherBook.getIsbn())) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -83,5 +84,34 @@ public class User {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    public int hashCode() {
+        if(this.username == null) {
+            return 0;
+        }
+
+        return this.username.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(this == other) {
+            return true;
+        } else if(other == null) {
+            return false;
+        }
+
+        if(!(other instanceof User)) {
+            return false;
+        }
+
+        User otherUser = (User) other;
+
+        if(this.username != null && this.username.equals(otherUser.username)) {
+            return true;
+        }
+
+        return false;
     }
 }

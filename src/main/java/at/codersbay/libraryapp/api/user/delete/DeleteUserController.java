@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -26,11 +27,18 @@ public class DeleteUserController {
             @PathVariable
             long id) {
 
-        userRepository.deleteById(id);
-
         Optional<User> optionalUser = userRepository.findById(id);
 
         ResponseBody responseBody = new ResponseBody();
+
+        if(optionalUser.isEmpty()) {
+            responseBody.addErrorMessage("could not find user by id '" + id + "'.");
+            return new ResponseEntity(responseBody, HttpStatus.BAD_REQUEST);
+        }
+
+        userRepository.deleteById(id);
+
+        optionalUser = userRepository.findById(id);
 
         if(optionalUser.isPresent()) {
             responseBody.addErrorMessage("could not delete user by id '" + id + "'.");

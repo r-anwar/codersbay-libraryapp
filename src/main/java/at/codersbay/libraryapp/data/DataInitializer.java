@@ -4,6 +4,8 @@ import at.codersbay.libraryapp.api.author.Author;
 import at.codersbay.libraryapp.api.author.AuthorRepository;
 import at.codersbay.libraryapp.api.books.Book;
 import at.codersbay.libraryapp.api.books.BookRepository;
+import at.codersbay.libraryapp.api.user.User;
+import at.codersbay.libraryapp.api.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,9 @@ public class DataInitializer {
 
     @Autowired
     private AuthorRepository authorRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @PostConstruct
     public void setup() {
@@ -81,6 +86,21 @@ public class DataInitializer {
         narzissUndGoldmund.getAuthors().add(hesse);
 
         bookRepository.save(narzissUndGoldmund);
+
+
+        User max = new User();
+        max.setUsername("u1234567890");
+        max.setFirstName("Maximilian");
+        max.setLastName("Muster");
+
+        this.userRepository.save(max);
+
+        narzissUndGoldmund.setUser(max);
+        narzissUndGoldmund.setAvailable(false);
+
+        bookRepository.save(narzissUndGoldmund);
+
+
 
     }
 }
