@@ -3,8 +3,6 @@ package at.codersbay.libraryapp.api.books.borrow;
 import at.codersbay.libraryapp.api.books.Book;
 import at.codersbay.libraryapp.api.books.BookRepository;
 import at.codersbay.libraryapp.api.books.BookResponseBody;
-import at.codersbay.libraryapp.api.books.Borrowed;
-import at.codersbay.libraryapp.api.books.create.CreateBookService;
 import at.codersbay.libraryapp.api.user.User;
 import at.codersbay.libraryapp.api.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +31,7 @@ public class BorrowBookController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
-        Optional<Book> optionalBook = bookRepository.findById(patchBorrowDTO.getId());
+        Optional<Book> optionalBook = bookRepository.findById(patchBorrowDTO.getBookId());
 
         if (optionalBook.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -42,6 +40,11 @@ public class BorrowBookController {
         Book book = optionalBook.get();
 
         if(patchBorrowDTO.isBorrow()) {
+
+            if(book.getBorrowed() != null) {
+                return new ResponseEntity<>(new BookResponseBody(book), HttpStatus.OK);
+            }
+
             Optional<User> optionalUser = this.userRepository.findById(patchBorrowDTO.getUserId());
 
             if(optionalUser.isEmpty()) {

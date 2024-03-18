@@ -99,6 +99,13 @@ public class Book {
         return this.isbn.hashCode();
     }
 
+    public void test() {
+        Book a = new Book();
+        Book b = a;
+
+        a.equals(b);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(this == obj) {
@@ -111,9 +118,11 @@ public class Book {
             return false;
         }
 
+        String isbn = "xy";
+
         Book otherBook = (Book) obj;
 
-        if(this.isbn != null && this.isbn.equals(otherBook.getIsbn())) {
+        if(otherBook.getIsbn() != null && otherBook.getIsbn().equals(this.isbn)) {
             return true;
         }
 

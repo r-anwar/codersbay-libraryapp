@@ -2,18 +2,18 @@ package at.codersbay.libraryapp.api.books.borrow;
 
 public class BorrowDTO {
 
-    private long id;
+    private long bookId;
 
     private long userId;
 
     private boolean borrow;
 
-    public long getId() {
-        return id;
+    public long getBookId() {
+        return bookId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setBookId(long bookId) {
+        this.bookId = bookId;
     }
 
     public boolean isBorrow() {
