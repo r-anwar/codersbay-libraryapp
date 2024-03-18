@@ -1,22 +1,14 @@
 package at.codersbay.libraryapp.api.user.create;
 
-import at.codersbay.libraryapp.api.ResponseBody;
-import at.codersbay.libraryapp.api.books.Book;
-import at.codersbay.libraryapp.api.books.BookResponseBody;
-import at.codersbay.libraryapp.api.books.create.*;
 import at.codersbay.libraryapp.api.user.User;
 import at.codersbay.libraryapp.api.user.UserRepository;
 import at.codersbay.libraryapp.api.user.UserResponseBody;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.PropertyValueException;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.annotation.MultipartConfig;
 import java.util.Optional;
 
 @RestController

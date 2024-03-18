@@ -1,4 +1,4 @@
-package at.codersbay.libraryapp.api.books;
+package at.codersbay.libraryapp.api.book;
 
 import at.codersbay.libraryapp.api.ResponseBody;
 

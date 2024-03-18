@@ -1,13 +1,12 @@
-package at.codersbay.libraryapp.api.books.create;
+package at.codersbay.libraryapp.api.book.create;
 
 import at.codersbay.libraryapp.api.author.Author;
 import at.codersbay.libraryapp.api.author.AuthorRepository;
-import at.codersbay.libraryapp.api.books.Book;
-import at.codersbay.libraryapp.api.books.BookRepository;
+import at.codersbay.libraryapp.api.book.Book;
+import at.codersbay.libraryapp.api.book.BookRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.*;
 

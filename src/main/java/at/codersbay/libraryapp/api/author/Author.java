@@ -1,6 +1,6 @@
 package at.codersbay.libraryapp.api.author;
 
-import at.codersbay.libraryapp.api.books.Book;
+import at.codersbay.libraryapp.api.book.Book;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 

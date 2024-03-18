@@ -1,6 +1,4 @@
-package at.codersbay.libraryapp.api.books.create;
-
-import at.codersbay.libraryapp.api.books.Book;
+package at.codersbay.libraryapp.api.book.create;
 
 import java.util.Set;
 

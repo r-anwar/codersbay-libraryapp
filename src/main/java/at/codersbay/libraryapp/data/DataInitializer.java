@@ -2,8 +2,8 @@ package at.codersbay.libraryapp.data;
 
 import at.codersbay.libraryapp.api.author.Author;
 import at.codersbay.libraryapp.api.author.AuthorRepository;
-import at.codersbay.libraryapp.api.books.Book;
-import at.codersbay.libraryapp.api.books.BookRepository;
+import at.codersbay.libraryapp.api.book.Book;
+import at.codersbay.libraryapp.api.book.BookRepository;
 import at.codersbay.libraryapp.api.user.User;
 import at.codersbay.libraryapp.api.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

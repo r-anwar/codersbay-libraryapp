@@ -1,10 +1,10 @@
-package at.codersbay.libraryapp.api.books;
+package at.codersbay.libraryapp.api.book.borrow;
 
+import at.codersbay.libraryapp.api.book.Book;
 import at.codersbay.libraryapp.api.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

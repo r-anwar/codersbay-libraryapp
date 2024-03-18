@@ -1,6 +1,7 @@
-package at.codersbay.libraryapp.api.books;
+package at.codersbay.libraryapp.api.book;
 
 import at.codersbay.libraryapp.api.author.Author;
+import at.codersbay.libraryapp.api.book.borrow.Borrowed;
 import at.codersbay.libraryapp.api.user.User;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -8,8 +9,6 @@ import javax.persistence.*;
 
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.Set;
 
 @Entity

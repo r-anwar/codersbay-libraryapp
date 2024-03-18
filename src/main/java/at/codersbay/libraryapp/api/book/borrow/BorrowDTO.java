@@ -1,4 +1,4 @@
-package at.codersbay.libraryapp.api.books.borrow;
+package at.codersbay.libraryapp.api.book.borrow;
 
 public class BorrowDTO {
 

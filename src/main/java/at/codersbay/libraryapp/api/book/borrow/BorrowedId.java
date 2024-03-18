@@ -1,4 +1,4 @@
-package at.codersbay.libraryapp.api.books;
+package at.codersbay.libraryapp.api.book.borrow;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

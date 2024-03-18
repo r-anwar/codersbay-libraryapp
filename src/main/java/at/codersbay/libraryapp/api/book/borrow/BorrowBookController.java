@@ -1,8 +1,8 @@
-package at.codersbay.libraryapp.api.books.borrow;
+package at.codersbay.libraryapp.api.book.borrow;
 
-import at.codersbay.libraryapp.api.books.Book;
-import at.codersbay.libraryapp.api.books.BookRepository;
-import at.codersbay.libraryapp.api.books.BookResponseBody;
+import at.codersbay.libraryapp.api.book.Book;
+import at.codersbay.libraryapp.api.book.BookRepository;
+import at.codersbay.libraryapp.api.book.BookResponseBody;
 import at.codersbay.libraryapp.api.user.User;
 import at.codersbay.libraryapp.api.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

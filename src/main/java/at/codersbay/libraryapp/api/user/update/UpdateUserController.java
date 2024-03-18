@@ -1,9 +1,5 @@
 package at.codersbay.libraryapp.api.user.update;
 
-import at.codersbay.libraryapp.api.books.Book;
-import at.codersbay.libraryapp.api.books.BookRepository;
-import at.codersbay.libraryapp.api.books.BookResponseBody;
-import at.codersbay.libraryapp.api.books.update.UpdateBookDTO;
 import at.codersbay.libraryapp.api.user.User;
 import at.codersbay.libraryapp.api.user.UserRepository;
 import at.codersbay.libraryapp.api.user.UserResponseBody;

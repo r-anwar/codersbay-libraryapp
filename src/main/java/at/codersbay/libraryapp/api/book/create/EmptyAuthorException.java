@@ -1,4 +1,4 @@
-package at.codersbay.libraryapp.api.books.create;
+package at.codersbay.libraryapp.api.book.create;
 
 public class EmptyAuthorException extends Exception {
 

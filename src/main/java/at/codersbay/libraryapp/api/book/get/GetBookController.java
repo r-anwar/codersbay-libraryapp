@@ -1,8 +1,8 @@
-package at.codersbay.libraryapp.api.books.get;
+package at.codersbay.libraryapp.api.book.get;
 
-import at.codersbay.libraryapp.api.books.Book;
-import at.codersbay.libraryapp.api.books.BookRepository;
-import at.codersbay.libraryapp.api.books.BookResponseBody;
+import at.codersbay.libraryapp.api.book.Book;
+import at.codersbay.libraryapp.api.book.BookRepository;
+import at.codersbay.libraryapp.api.book.BookResponseBody;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

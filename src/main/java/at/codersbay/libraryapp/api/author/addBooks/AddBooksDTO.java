@@ -1,7 +1,5 @@
 package at.codersbay.libraryapp.api.author.addBooks;
 
-import at.codersbay.libraryapp.api.books.Book;
-
 import java.util.Set;
 
 public class AddBooksDTO {

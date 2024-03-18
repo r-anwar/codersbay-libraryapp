@@ -1,7 +1,6 @@
 package at.codersbay.libraryapp.api.user;
 
 import at.codersbay.libraryapp.api.ResponseBody;
-import at.codersbay.libraryapp.api.books.Book;
 
 public class UserResponseBody extends ResponseBody {
 

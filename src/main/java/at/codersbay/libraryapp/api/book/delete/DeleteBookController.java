@@ -1,8 +1,8 @@
-package at.codersbay.libraryapp.api.books.delete;
+package at.codersbay.libraryapp.api.book.delete;
 
 import at.codersbay.libraryapp.api.ResponseBody;
-import at.codersbay.libraryapp.api.books.Book;
-import at.codersbay.libraryapp.api.books.BookRepository;
+import at.codersbay.libraryapp.api.book.Book;
+import at.codersbay.libraryapp.api.book.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

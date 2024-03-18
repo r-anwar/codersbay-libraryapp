@@ -1,11 +1,8 @@
 package at.codersbay.libraryapp.api.user.get;
 
-import at.codersbay.libraryapp.api.books.Book;
-import at.codersbay.libraryapp.api.books.BookResponseBody;
 import at.codersbay.libraryapp.api.user.User;
 import at.codersbay.libraryapp.api.user.UserRepository;
 import at.codersbay.libraryapp.api.user.UserResponseBody;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

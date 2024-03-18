@@ -1,4 +1,4 @@
-package at.codersbay.libraryapp.api.books.update;
+package at.codersbay.libraryapp.api.book.update;
 
 public class UpdateBookDTO {
 
