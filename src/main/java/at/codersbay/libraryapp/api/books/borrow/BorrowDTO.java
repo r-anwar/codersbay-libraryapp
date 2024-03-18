@@ -4,6 +4,8 @@ public class BorrowDTO {
 
     private long id;
 
+    private long userId;
+
     private boolean borrow;
 
     public long getId() {
@@ -20,5 +22,13 @@ public class BorrowDTO {
 
     public void setBorrow(boolean borrow) {
         this.borrow = borrow;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

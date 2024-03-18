@@ -95,8 +95,8 @@ public class DataInitializer {
 
         this.userRepository.save(max);
 
-        narzissUndGoldmund.setUser(max);
-        narzissUndGoldmund.setAvailable(false);
+
+        narzissUndGoldmund.borrow(max);
 
         bookRepository.save(narzissUndGoldmund);
 

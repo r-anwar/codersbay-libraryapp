@@ -42,12 +42,8 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
 
-    @Column(nullable = false)
-    private boolean available = true;
-
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
+    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
+    private Borrowed borrowed;
 
     public long getId() {
         return id;
@@ -81,20 +77,17 @@ public class Book {
         this.authors = authors;
     }
 
-    public boolean isAvailable() {
-        return available;
+    public Borrowed getBorrowed() {
+        return borrowed;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void setBorrowed(Borrowed borrowed) {
+        this.borrowed = borrowed;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void borrow(User user) {
+        Borrowed borrowed = new Borrowed(this, user);
+        this.borrowed = borrowed;
     }
 
     @Override

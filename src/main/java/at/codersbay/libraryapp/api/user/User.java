@@ -1,6 +1,7 @@
 package at.codersbay.libraryapp.api.user;
 
 import at.codersbay.libraryapp.api.books.Book;
+import at.codersbay.libraryapp.api.books.Borrowed;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -32,9 +33,8 @@ public class User {
 
     private String lastName;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="user")
-    private Set<Book> books;
+    @OneToMany(mappedBy = "user")
+    Set<Borrowed> borrows;
 
     public User() {
 
@@ -78,12 +78,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Set<Book> getBooks() {
-        return books;
+    public Set<Borrowed> getBorrows() {
+        return borrows;
     }
 
-    public void setBooks(Set<Book> books) {
-        this.books = books;
+    public void setBorrows(Set<Borrowed> borrows) {
+        this.borrows = borrows;
     }
 
     public int hashCode() {
